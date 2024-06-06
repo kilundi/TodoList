@@ -32,17 +32,20 @@ const AddTasks = () => {
     }
 
     return (
-        <div>
+        <div className='max-w-96 bg-emerald-200 p-4 rounded-md' >
             <input onChange={ (event) => setTask(event.target.value) }
-                value={ task.text }
+                value={ task }
                 className=' bg-neutral-400 rounded-lg mr-4' type="text" />
             <button onClick={ addTask } className=' bg-green-500 rounded-md px-3'  >Add Task</button>
 
-            <div>
+            <div className=' ' >
                 {
                     tasks.map((task, index) => {
-                        return <div key={ index } className={ `p-2 my-2 ${task.completed ? 'bg-blue-200' : 'bg-white'}` }>   { task.text } <input onChange={ () => toggleTaskCompletion(index) } type="checkbox" checked={ task.completed } />
-                            <button onClick={ () => deleteTask(index) } >X</button>  </div>
+                        return <div key={ index } className={ `p-2 my-2 flex flex-row justify-between ${task.completed ? 'bg-blue-200' : 'bg-white'}` }>   <p className=' ' > { task.text }</p>
+                            <span className='  flex justify-between gap-4 flex-row'>
+                                <input onChange={ () => toggleTaskCompletion(index) } type="checkbox" checked={ task.completed } />
+                                <button onClick={ () => deleteTask(index) } >X</button> </span>
+                        </div>
                     })
                 }
             </div>
